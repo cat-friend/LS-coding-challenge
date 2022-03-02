@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.py[cod]
+.venv
+.DS_Store
+.vscode/
+**/code.txt/
+**/node_modules
+**/code.*
+**/code*.*
+**/test*.*
+**/*.ai
+**/*.psd
+
