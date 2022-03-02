@@ -1,38 +1,38 @@
-export async function fetchAllLoans(url, options = {}) {
-    // set options.method to 'GET' if there is no method
-    options.method = options.method || 'GET';
-    // set options.headers to an empty object if there is no headers
-    options.headers = options.headers || {};
-
-    // if the options.method is not 'GET', then set the "Content-Type" header to
-    // "application/json", and set the "XSRF-TOKEN" header to the value of the
-    // "XSRF-TOKEN" cookie
-    if (options.method.toUpperCase() !== 'GET') {
-        options.headers['Content-Type'] =
-            options.headers['Content-Type'] || 'application/json';
-        options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
-    }
-    // call the default window's fetch with the url and the options passed in
+export async function fetchAllLoans(options = {}) {
+    options.method = 'GET';
+    const url = `/api/loans/`
     const res = await window.fetch(url, options);
-
-    // if the response status code is 400 or above, then throw an error with the
-    // error being the response
     if (res.status >= 400) throw res;
-
-    // if the response status code is under 400, then return the response to the
-    // next promise chain
     return res;
 }
 
 
 export async function fetchOneLoan(id) {
-
+    options.method = 'GET';
+    const url = `/api/loans/${id}`
+    const res = await window.fetch(url, options);
+    if (res.status >= 400) throw res;
+    return res;
 }
 
-export async function editLoan(payload) {
-
+export async function editLoan(payload, options = {}) {
+    options.method = 'PUT';
+    options.headers = {};
+    options.body = JSON.stringify(payload);
+    options.headers['Content-Type'] = 'application/json';
+    const url = `/api/loans/${payload.id}`
+    const res = await window.fetch(url, options);
+    if (res.status >= 400) throw res;
+    return res;
 }
 
 export async function postLoan(payload) {
-    
+    options.method = 'POST';
+    options.headers = {};
+    options.body = JSON.stringify(payload);
+    options.headers['Content-Type'] = 'application/json';
+    const url = `/api/loans/`
+    const res = await window.fetch(url, options);
+    if (res.status >= 400) throw res;
+    return res;
 }
