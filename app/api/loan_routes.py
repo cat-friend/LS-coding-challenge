@@ -55,4 +55,20 @@ def one_loan(id):
             return loan.to_dict()
         except:
             return {'errors': "resource not found"}, 404
-    
+    if request.method == 'PUT':
+        loan = Loan.query.filter_by(id=id).all()
+        if not loan:
+            return {'errors': "resource not found"}, 404
+        else:
+            form = LoanForm()
+            form['csrf_token'].data = request.cookies['csrf_token']
+            if form.validate_on_submit():
+                loan.amount = form.data['amount']
+                loan.interest_rate = form.data['interest_rate']
+                loan.length_months = form.data['length_months']
+                loan.monthly_payment = form.data['monthly_payment']
+                db.add(loan)
+                db.commit()
+                return loan.to_dict()
+            else:
+                return {'errors': validation_errors_to_error_messages(form.errors)}, 401
