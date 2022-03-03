@@ -15,6 +15,7 @@ def seed():
 def undo():
     undo_loans()
 
+@seed_commands.command('reset')
 def reset():
     """
     `flask seed reset` unseeds all of the data and then reseeds
