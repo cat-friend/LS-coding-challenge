@@ -29,7 +29,6 @@ export async function editLoan(payload) {
 }
 
 export async function postLoan(payload) {
-    console.log("in the function)");
     const options = {};
     options.method = 'POST';
     options.headers = {};
@@ -37,10 +36,6 @@ export async function postLoan(payload) {
     options.headers['Content-Type'] = 'application/json';
     const url = `/api/loans/`
     const res = await window.fetch(url, options);
-    if (res.status >= 400) {
-        console.log(">>>>400")
-        const data = res.json();
-        console.log("data dot errors", data.errors)
-    };
+    if (res.status >= 400) throw res;
     return res;
 }

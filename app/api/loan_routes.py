@@ -39,7 +39,6 @@ def all_loans():
             db.session.commit()
             return new_loan.to_dict()
         else:
-            print("errors", validation_errors_to_error_messages(form.errors))
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @loan_routes.route('/<int:id>', methods=['GET', 'PUT'])
@@ -53,7 +52,6 @@ def one_loan(id):
     if request.method == 'GET':
         try:
             loan = Loan.query.get(id)
-            print("HENLO")
             return loan.to_dict()
         except:
             return {'errors': "resource not found"}, 404
@@ -73,5 +71,4 @@ def one_loan(id):
                 db.session.commit()
                 return loan.to_dict()
             else:
-                print("errors", validation_errors_to_error_messages(form.errors))
                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401
