@@ -1,7 +1,7 @@
 function Info() {
     return (
         <div className="content-container">
-            <div classSName="content">
+            <div>
                 <h1>API Library</h1>
                 <p>For this code challenge, all functions work in the console of the browser.</p>
 
@@ -33,6 +33,24 @@ function Info() {
                         &#125;
                     </code>
                 </p>
+                <br />
+                <br />
+                <h2>Example console command:</h2>
+                <p>
+                    <code>
+                        const payload = &#123;<br />
+                        &emsp;id: 1,<br />
+                        &emsp;amount: 100000,<br />
+                        &emsp;interest_rate: 20.4,<br />
+                        &emsp;length_months: 10,<br />
+                        &emsp;monthly_payment: 11000<br />
+                        &#125;
+                        const response = await editLoan(payload);<br />
+                        const data = await response.json();<br />
+                        console.log(data)<br />
+                    </code>
+                </p>
+
             </div>
         </div>
     )

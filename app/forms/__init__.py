@@ -1,1 +1,1 @@
-from .loan_forms import LoanForm
+from .loan_forms import LoanForm, EditLoanForm

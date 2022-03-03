@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import Loan, db
-from app.forms import LoanForm
+from app.forms import LoanForm, EditLoanForm
 
 loan_routes = Blueprint('loans', __name__)
 
@@ -56,11 +56,11 @@ def one_loan(id):
         except:
             return {'errors': "resource not found"}, 404
     if request.method == 'PUT':
-        loan = Loan.query.filter_by(id=id).all()
+        loan = Loan.query.get(id)
         if not loan:
             return {'errors': "resource not found"}, 404
         else:
-            form = LoanForm()
+            form = EditLoanForm()
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
                 loan.amount = form.data['amount']
