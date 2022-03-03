@@ -1,7 +1,6 @@
 from flask.cli import AppGroup
+from .loans import seed_loans, undo_loans
 
-# Creates a seed group to hold our commands
-# So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
 
 
@@ -9,18 +8,16 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     # Add other seed functions here
-    pass
+    seed_loans()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    # Add other undo functions here
-    pass
+    undo_loans()
 
 def reset():
     """
     `flask seed reset` unseeds all of the data and then reseeds
     """
-    # Add more undo functions here
-    pass
-    #add more seed functions here
+    undo_loans()
+    seed_loans

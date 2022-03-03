@@ -35,10 +35,11 @@ def all_loans():
             length_months = form.data['length_months']
             monthly_payment = form.data['monthly_payment']
             new_loan = Loan(amount=amount, interest_rate=interest_rate, length_months=length_months, monthly_payment=monthly_payment)
-            db.add(new_loan)
-            db.commit()
+            db.session.add(new_loan)
+            db.session.commit()
             return new_loan.to_dict()
         else:
+            print("errors", validation_errors_to_error_messages(form.errors))
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @loan_routes.route('/<int:id>', methods=['GET', 'PUT'])
@@ -51,7 +52,8 @@ def one_loan(id):
     """
     if request.method == 'GET':
         try:
-            loan = Loan.query.filter_by(id=id).all()
+            loan = Loan.query.get(id)
+            print("HENLO")
             return loan.to_dict()
         except:
             return {'errors': "resource not found"}, 404
@@ -67,8 +69,9 @@ def one_loan(id):
                 loan.interest_rate = form.data['interest_rate']
                 loan.length_months = form.data['length_months']
                 loan.monthly_payment = form.data['monthly_payment']
-                db.add(loan)
-                db.commit()
+                db.session.add(loan)
+                db.session.commit()
                 return loan.to_dict()
             else:
+                print("errors", validation_errors_to_error_messages(form.errors))
                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401

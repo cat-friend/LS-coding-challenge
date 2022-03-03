@@ -1,16 +1,14 @@
-import { BrowserRouter, Switch } from 'react-router-dom';
-
-import NavBar from './components/NavBar';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Info from './components/Info';
 
 
 function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path="/" exact={true}>
-          <h1>hi from the route</h1>
+          <Info />
         </Route>
       </Switch>
     </BrowserRouter>
