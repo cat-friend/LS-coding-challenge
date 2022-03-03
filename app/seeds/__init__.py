@@ -20,4 +20,4 @@ def reset():
     `flask seed reset` unseeds all of the data and then reseeds
     """
     undo_loans()
-    seed_loans
+    seed_loans()

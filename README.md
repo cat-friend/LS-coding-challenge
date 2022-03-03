@@ -1,7 +1,14 @@
-# Prerequisites
+# [LINK TO DEPLOYED CODING CHALLENGE](https://dpl-loanstreet.herokuapp.com/)
+
+
+
+# Local installation
+
+## Prerequisites
  - [Node.js 16.13.1](https://nodejs.org/en/)
 
-# Getting Started
+
+## Getting Started
 
 1. Clone the project repository
 
